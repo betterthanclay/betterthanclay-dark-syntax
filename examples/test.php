@@ -27,9 +27,14 @@ trait MyTrait
 $string = "$other";
 $constant = CONSTANT;
 
-class Test extends core\Base implements MyInterface, \ArrayAccess
+class Test extends core\Base implements namespace\gg\MyInterface, ffff\f\ArrayAccess
 {
     use core\MyTrait;
+
+    use A, B {
+        B::smallTalk insteadof A;
+        A::bigTalk insteadof B;
+    }
 
     /**
      * This is docblock

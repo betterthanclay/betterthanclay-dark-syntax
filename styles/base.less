@@ -192,7 +192,7 @@ atom-text-editor {
 
 .syntax--support {
   &.syntax--class {
-    color: @light-blue;
+    color: @cyan;
   }
 
   &.syntax--function  {
@@ -204,6 +204,11 @@ atom-text-editor {
   }
 }
 
+.syntax--other.syntax--inherited-class,
+.syntax--other.syntax--inherited-class .syntax--support.syntax--class {
+  color: @cyan;
+}
+
 .syntax--entity {
   &.syntax--name.syntax--function {
     color: @dark-blue;
@@ -213,9 +218,6 @@ atom-text-editor {
     //text-decoration: underline;
   }
 
-  &.syntax--other.syntax--inherited-class {
-    color: @light-blue;
-  }
   &.syntax--name.syntax--class, &.syntax--name.syntax--type.syntax--class {
     color: @blue;
   }

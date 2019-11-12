@@ -36,10 +36,10 @@
     }
 
     &.syntax--namespace:not(.syntax--keyword) {
-        color: darken(@light-blue, 6%);
+        color: fade(@cyan, 60%);
 
         .syntax--separator {
-            color: @light-blue;
+            color: fade(lighten(@cyan, 20%), 30%);
         }
     }
 
@@ -60,6 +60,11 @@
 
     &.syntax--output.syntax--construct {
         //color: @cyan;
+    }
+
+    &.syntax--keyword.syntax--use-as,
+    &.syntax--keyword.syntax--use-insteadof {
+        color: @purple;
     }
 
     &.syntax--keyword.syntax--control,
