@@ -1,0 +1,123 @@
+@import "./syntax-variables.less";
+
+.syntax--php {
+    /*
+    &.syntax--text {
+        color: fade(@gray-500, 60%);
+    }
+    */
+
+    &.syntax--storage.syntax--type {
+        color: @cyan;
+        font-style: italic;
+
+        &.syntax--class,
+        &.syntax--interface,
+        &.syntax--trait,
+        &.syntax--function {
+            //color: @mushy-pea;
+            color: @brown;
+            font-style: normal;
+        }
+    }
+
+    &.syntax--constant {
+        font-weight: bold;
+
+        &.syntax--language {
+            font-weight: normal;
+            color: @purple;
+        }
+    }
+
+    &.syntax--numeric {
+        font-weight: normal;
+        color: @purple;
+    }
+
+    &.syntax--namespace:not(.syntax--keyword) {
+        color: darken(@light-blue, 6%);
+
+        .syntax--separator {
+            color: @light-blue;
+        }
+    }
+
+    &.syntax--entity.syntax--alias {
+        color: @cyan;
+    }
+
+    &.syntax--section.syntax--embedded {
+        font-weight: bold;
+        color: lighten(@red, 2%);
+    }
+
+    &.syntax--function + .syntax--constant.syntax--other,
+    &.syntax--namespace + .syntax--constant.syntax--other {
+        color: @light-blue;
+        font-weight: normal;
+    }
+
+    &.syntax--output.syntax--construct {
+        //color: @cyan;
+    }
+
+    &.syntax--keyword.syntax--control,
+    &.syntax--type.syntax--function + .syntax--name.syntax--function {
+        font-weight: 600;
+    }
+    &.syntax--entity.syntax--name.syntax--type {
+        text-decoration: underline;
+
+        &.syntax--namespace {
+            text-decoration: none;
+        }
+    }
+
+    &.syntax--keyword.syntax--operator.syntax--type {
+        color: @mushy-pea;
+    }
+    &.syntax--keyword.syntax--operator.syntax--class {
+        color: fade(@gray-500, 70%);
+        font-weight: 100;
+    }
+
+    &.syntax--function {
+        + .syntax--storage,
+        + .syntax--constant.syntax--other,
+        + .syntax--namespace + .syntax--constant.syntax--other {
+            font-style: normal;
+            color: @cyan;
+
+            + .syntax--constant.syntax--other {
+                color: @cyan;
+            }
+        }
+
+        + .syntax--namespace {
+            color: lighten(@cyan, 15%);
+        }
+    }
+
+    &.syntax--function-call {
+        color: @dark-blue;
+    }
+    &.syntax--property {
+        color: @gray-400;
+    }
+
+    &.syntax--support.syntax--function.syntax--magic {
+        font-weight: 600;
+        font-style: italic;
+    }
+
+    .syntax--parameter {
+        .syntax--namespace {
+            color: lighten(@cyan, 15%);
+        }
+        .syntax--support.syntax--class,
+        .syntax--storage.syntax--type {
+            color: @cyan;
+        }
+    }
+}

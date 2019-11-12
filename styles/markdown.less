@@ -1,0 +1,18 @@
+@import "./syntax-variables.less";
+
+.syntax--gfm {
+    &.syntax--link {
+        color: @mushy-pea;
+    }
+
+    &.syntax--list {
+        color: @blue;
+    }
+
+    &.syntax--raw,
+    &.syntax--code {
+        > .syntax--support {
+            color: @red;
+        }
+    }
+}

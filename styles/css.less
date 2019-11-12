@@ -1,0 +1,82 @@
+@import "./syntax-variables.less";
+
+.syntax--css, .syntax--scss, .syntax--less {
+    &.syntax--entity {
+        &.syntax--tag {
+            color: @cyan;
+        }
+
+        &.syntax--attribute-name {
+            color: darken(@orange, 4%);
+
+            &.syntax--pseudo-class {
+                color: @cyan;
+                font-style: italic;
+
+                .syntax--punctuation {
+                    color: @gray;
+                    font-style: normal;
+                }
+            }
+        }
+    }
+
+    &.syntax--property-name {
+        color: @gray-500;
+    }
+
+    &.syntax--variable {
+        color: fade(@pink, 85%);
+    }
+
+    &.syntax--property-value {
+        &.syntax--constant {
+            color: @purple;
+        }
+
+        .syntax--function {
+            color: @dark-blue;
+
+            .syntax--punctuation {
+                color: @gray-400;
+            }
+        }
+    }
+
+
+    &.syntax--numeric,
+    &.syntax--property-value {
+        color: @purple;
+
+        .syntax--punctuation {
+            color: @gray-400;
+        }
+    }
+
+    &.syntax--keyword {
+        &.syntax--unit {
+            color: @mushy-pea;
+        }
+
+        &.syntax--important {
+            color: @red;
+        }
+    }
+
+    &.syntax--hex-value {
+        color: @brown;
+
+        .syntax--punctuation {
+            color: @light-brown;
+        }
+    }
+
+    &.syntax--parent-selector, &.syntax--reference {
+        color: @green !important;
+        font-weight: bold;
+
+        .syntax--punctuation {
+            color: @green;
+        }
+    }
+}
