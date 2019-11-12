@@ -9,7 +9,7 @@ use df;
 use df\core;
 use df\apex as TestAlias;
 
-interface MyInterface extends \ArrayAccess, \Countable
+interface MyInterface extends ArrayAccess, \Countable
 {
 }
 
@@ -32,6 +32,9 @@ class Test extends core\Base implements MyInterface, \ArrayAccess
 {
     use core\MyTrait;
 
+    /**
+     * This is docblock
+     */
     public function test(string $in=null, callable $renderer): ?string
     {
         self::jam();

@@ -61,7 +61,15 @@ atom-text-editor {
 // Syntax styles
 
 .syntax--comment {
-  color: @dark-orange;
+  color: fade(@orange, 30%);
+
+  &.syntax--punctuation {
+    color: fade(@orange, 40%);
+  }
+
+  .syntax--keyword {
+    color: @pink;
+  }
 }
 
 .syntax--keyword {
@@ -153,10 +161,6 @@ atom-text-editor {
   }
 
   &.syntax--definition {
-    &.syntax--comment {
-      color: @orange;
-    }
-
     &.syntax--string {
         color: fade(@gray-500, 50%);
     }
