@@ -27,7 +27,6 @@ trait MyTrait
 $string = "$other";
 $constant = CONSTANT;
 
-
 class Test extends core\Base implements MyInterface, \ArrayAccess
 {
     use core\MyTrait;

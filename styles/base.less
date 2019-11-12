@@ -1,9 +1,12 @@
 @import "./syntax-variables.less";
 
 atom-text-editor {
-  filter: contrast(95%) brightness(90%);
   background-color: @syntax-background-color;
   color: @syntax-text-color;
+
+  > * {
+    filter: contrast(95%) brightness(90%);
+  }
 
   .wrap-guide {
     background-color: @syntax-wrap-guide-color;
