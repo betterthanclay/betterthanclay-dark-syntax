@@ -1,3 +1,6 @@
+## 0.1.4
+* Updated comment styling
+
 ## 0.1.3
 * Updated type keyword styling
 
