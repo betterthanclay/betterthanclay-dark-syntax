@@ -1,3 +1,6 @@
+## 0.1.6
+* Updated PHP type handling
+
 ## 0.1.5
 * Fixed autocomplete positioning
 
