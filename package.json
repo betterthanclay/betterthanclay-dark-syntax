@@ -1,7 +1,7 @@
 {
   "name": "betterthanclay-dark-syntax",
   "theme": "syntax",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Dark syntax theme with focus on PHP and CSS",
   "keywords": [
     "syntax",
