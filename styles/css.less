@@ -13,8 +13,8 @@ comment
         &.syntax--attribute-name {
             color: darken(@orange, 4%);
 
-            &.syntax--pseudo-class {
-                color: @cyan;
+            &.syntax--pseudo-class, &.syntax--pseudo-element {
+                color: @blue;
                 font-style: italic;
 
                 .syntax--punctuation {
@@ -26,7 +26,7 @@ comment
     }
 
     &.syntax--property-name {
-        color: @gray-500;
+        color: @gray-400;
     }
 
     &.syntax--variable {
