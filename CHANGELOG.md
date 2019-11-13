@@ -1,3 +1,7 @@
+## 0.3.0
+* Consolidated styles
+* Updated readme
+
 ## 0.2.0
 * Tweaked colours
 
