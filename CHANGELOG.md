@@ -1,3 +1,6 @@
+## 0.1.8
+* Updated string and variable styling
+
 ## 0.1.7
 * Updated string escape styling
 
