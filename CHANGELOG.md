@@ -1,3 +1,6 @@
+## 0.1.7
+* Updated string escape styling
+
 ## 0.1.6
 * Updated PHP type handling
 

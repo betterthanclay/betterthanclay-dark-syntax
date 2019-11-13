@@ -24,7 +24,7 @@ trait MyTrait
     }
 }
 
-$string = "$other";
+$string = "$other\nactual text";
 $constant = CONSTANT;
 
 class Test extends core\Base implements namespace\gg\MyInterface, ffff\f\ArrayAccess
