@@ -104,6 +104,8 @@ atom-text-editor {
 
   &.syntax--character.syntax--escape {
     color: @mushy-pea;
+    background: fade(@gray-300, 20%);
+    border-radius: 3px;
   }
 
   &.syntax--numeric {
@@ -121,6 +123,10 @@ atom-text-editor {
 
 .syntax--variable {
   color: @syntax-variable-color;
+
+  &.syntax--this {
+    font-style: italic;
+  }
 
   &.syntax--interpolation {
     color: darken(@red, 10%);
@@ -156,16 +162,16 @@ atom-text-editor {
 .syntax--punctuation {
   color: fade(@gray-500, 75%);
 
-  &.syntax--variable,
+  //&.syntax--variable,
   &.syntax--parameters,
   &.syntax--array,
   &.syntax--bracket.syntax--round {
-    color: @syntax-variable-color;
+    color: fade(@syntax-variable-color, 80%);
   }
 
   &.syntax--definition {
     &.syntax--string {
-        color: fade(@gray-500, 50%);
+        color: fade(desaturate(@red, 30%), 50%);
     }
 
     &.syntax--heading,
