@@ -1,4 +1,4 @@
-# betterthanclay-dark-syntax theme
+# BetterThanClay Dark theme
 
 Dark syntax theme for Atom with focus on PHP and CSS.
 
@@ -15,4 +15,6 @@ Dark syntax theme for Atom with focus on PHP and CSS.
 * Neon
 * Markdown
 
-![A screenshot of your theme](https://f.cloud.github.com/assets/69169/2289498/4c3cb0ec-a009-11e3-8dbd-077ee11741e5.gif)
+![PHP Syntax](./docs/dark-php.png)
+
+![CSS Syntax](./docs/dark-css.png)
