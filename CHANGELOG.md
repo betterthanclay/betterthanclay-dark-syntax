@@ -1,3 +1,6 @@
+## 0.1.10
+* Tweaked colours
+
 ## 0.1.9
 * Updated variable and escape styling
 
