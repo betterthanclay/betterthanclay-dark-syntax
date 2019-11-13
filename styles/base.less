@@ -103,9 +103,7 @@ atom-text-editor {
   color: @pink;
 
   &.syntax--character.syntax--escape {
-    color: @mushy-pea;
-    background: fade(@gray-300, 20%);
-    border-radius: 3px;
+    color: @purple;
   }
 
   &.syntax--numeric {
@@ -162,7 +160,7 @@ atom-text-editor {
 .syntax--punctuation {
   color: fade(@gray-500, 75%);
 
-  //&.syntax--variable,
+  &.syntax--variable,
   &.syntax--parameters,
   &.syntax--array,
   &.syntax--bracket.syntax--round {

@@ -27,6 +27,8 @@ trait MyTrait
 $string = "$other\n\n\nactual text";
 $constant = CONSTANT;
 
+str_replace("\r", "\n", $string);
+
 class Test extends core\Base implements namespace\gg\MyInterface, ffff\f\ArrayAccess
 {
     use core\MyTrait;
