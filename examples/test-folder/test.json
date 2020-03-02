@@ -142,7 +142,7 @@
 		"titleBar.border": "#303030",
 		"titleBar.inactiveBackground": "#23282A",
 		"welcomePage.buttonBackground": "#282822",
-		"welcomePage.buttonHoverBackground": "#282822",
+		"welcomePage.buttonHoverBackground": "#282822"
 	},
 	"tokenColors": [
 		// General
