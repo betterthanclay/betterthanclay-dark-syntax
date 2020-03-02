@@ -16,7 +16,7 @@ interface MyInterface extends ArrayAccess, \Countable
 trait MyTrait
 {
     protected $vaf = [
-        'gg'
+        'gg', 1, 2, 3
     ];
 
     public function hello()
@@ -31,7 +31,7 @@ str_replace("\r", "\n", $string);
 
 class Test extends core\Base implements namespace\gg\MyInterface, ffff\f\ArrayAccess
 {
-    use core\MyTrait;
+    use core\MyTrait as SomeTrait;
 
     use A, B {
         B::smallTalk insteadof A;
@@ -43,13 +43,14 @@ class Test extends core\Base implements namespace\gg\MyInterface, ffff\f\ArrayAc
      */
     public function test(string $in=null, callable $renderer): ?string
     {
-        self::jam();
+        self::test($in, $renderer());
         return 'hello';
     }
 
     public function __construct()
     {
         some\other\Thing::go();
+        str_pad('gg', 2);
 
         $query
             ->countRelation('tasks')
@@ -69,7 +70,7 @@ class Test extends core\Base implements namespace\gg\MyInterface, ffff\f\ArrayAc
     {
         if (!class_exists($class)
         || $request instanceof arch\Stuff) {
-            throw core\Error::ENotFound(
+            throw new core\Error::ENotFound(
                 'Css processor '.$name.' could not be found'
             );
         }
@@ -77,6 +78,17 @@ class Test extends core\Base implements namespace\gg\MyInterface, ffff\f\ArrayAc
         return $this->settings->test(function (?int $in) {
             return $in ?? $out;
         });
+    }
+
+    public function test2(): void {
+        $stuff[
+            'key' => 'value'
+        ];
+
+        switch($stuff) {
+            case 'test':
+                break;
+        }
     }
 }
 ?>
