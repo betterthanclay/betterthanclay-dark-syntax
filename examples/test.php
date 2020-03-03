@@ -9,7 +9,7 @@ use df;
 use df\core;
 use df\apex as TestAlias;
 
-interface MyInterface extends ArrayAccess, \Countable
+interface MyInterface extends \ArrayAccess, \Countable
 {
 }
 
@@ -24,14 +24,16 @@ trait MyTrait
     }
 }
 
+define('CONSTANT', 'my const');
+
 $string = "$other\n\n\nactual text";
-$constant = CONSTANT;
+$constant = \CONSTANT;
 
 str_replace("\r", "\n", $string);
 
-class Test extends core\Base implements namespace\gg\MyInterface, ffff\f\ArrayAccess
+class Test extends core\Base implements namespace\MyInterface, \ArrayAccess
 {
-    use core\MyTrait as SomeTrait;
+    use core\MyTrait;
 
     use A, B {
         B::smallTalk insteadof A;
@@ -47,7 +49,7 @@ class Test extends core\Base implements namespace\gg\MyInterface, ffff\f\ArrayAc
         return 'hello';
     }
 
-    public function __construct()
+    public function __construct($query)
     {
         some\other\Thing::go();
         str_pad('gg', 2);
@@ -66,26 +68,32 @@ class Test extends core\Base implements namespace\gg\MyInterface, ffff\f\ArrayAc
             ->importRelationBlock('project', 'link');
     }
 
-    protected function _flaps(arch\IRequest $request): ?core\Uri
+    protected function _flaps(arch\IRequest $request, $class): ?core\Uri
     {
-        if (!class_exists($class)
-        || $request instanceof arch\Stuff) {
-            throw new core\Error::ENotFound(
-                'Css processor '.$name.' could not be found'
+        if (
+            !class_exists($class) ||
+            $request instanceof arch\Stuff
+        ) {
+            throw core\Error::ENotFound(
+                'Css processor '.$class.' could not be found'
             );
         }
 
-        return $this->settings->test(function (?int $in) {
+        $out = true;
+
+        return $this->settings->test(function (?int $in) use ($out): string {
             return $in ?? $out;
         });
     }
 
-    public function test2(): void {
-        $stuff[
-            'key' => 'value'
+    public function test2(): void
+    {
+        $stuff = [
+            'key' => 'value',
+            'otherKey' => 'hello world'
         ];
 
-        switch($stuff) {
+        switch ($stuff) {
             case 'test':
                 break;
         }

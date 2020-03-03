@@ -1,155 +1,164 @@
-import * as path from 'path';
+import * as path from "path";
 
 import {
-  workspace as Workspace,
+    workspace as Workspace,
+    Disposable,
+    ExtensionContext,
+    WebviewPanel,
+    ViewColumn,
+    window,
+    WebviewPanelOnDidChangeViewStateEvent,
+    Uri
+} from "vscode";
 
-  Disposable,
-  ExtensionContext,
-  WebviewPanel,
-  ViewColumn,
-  window,
-  WebviewPanelOnDidChangeViewStateEvent,
-  Uri
-} from 'vscode';
-
-import {Invalidates, Message} from './interfaces';
+import { Invalidates, Message } from "./interfaces";
 
 export abstract class WebviewController<TBootstrap> extends Disposable {
-  private panel: WebviewPanel | undefined;
-  private disposablePanel: Disposable | undefined;
-  private invalidateOnVisible: Invalidates;
-  private readonly context: ExtensionContext;
+    private panel: WebviewPanel | undefined;
+    private disposablePanel: Disposable | undefined;
+    private invalidateOnVisible: Invalidates;
+    private readonly context: ExtensionContext;
 
-  constructor(context: ExtensionContext) {
-    // Applying dispose callback for our disposable function
-    super(() => this.dispose());
+    constructor(context: ExtensionContext) {
+        // Applying dispose callback for our disposable function
+        super(() => this.dispose());
 
-    this.context = context;
-  }
-
-  dispose(): void {
-    if (this.disposablePanel) {
-      this.disposablePanel.dispose();
-    }
-  }
-
-  async show(): Promise<void> {
-    const html = await this.getHtml();
-
-    const rootPath = Uri
-      .file(this.context.asAbsolutePath('./build'))
-      .with({scheme: 'vscode-resource'}).toString();
-
-    // Replace placeholders in html content for assets and adding configurations as `window.bootstrap`
-    const fullHtml = html
-      .replace(/{{root}}/g, rootPath)
-      .replace('\'{{bootstrap}}\'', JSON.stringify(this.getBootstrap()));
-
-    // If panel already opened just reveal
-    if (this.panel !== undefined) {
-      this.panel.webview.html = fullHtml;
-      return this.panel.reveal(ViewColumn.Active);
+        this.context = context;
     }
 
-    this.panel = window.createWebviewPanel(
-      this.id,
-      this.title,
-      ViewColumn.Active,
-      {
-        retainContextWhenHidden: true,
-        "enableFindWidget": true,
-        enableCommandUris: true,
-        enableScripts: true
-      }
-    );
-
-    // Applying listeners
-    this.disposablePanel = Disposable.from(
-      this.panel,
-      this.panel.onDidDispose(this.onPanelDisposed, this),
-      this.panel.onDidChangeViewState(this.onViewStateChanged, this),
-      this.panel.webview.onDidReceiveMessage(this.onMessageReceived, this)
-    );
-
-    this.panel.webview.html = fullHtml;
-  }
-
-  protected onMessageReceived(event: Message): void {
-    if (event === null) {
-      return;
+    dispose(): void {
+        if (this.disposablePanel) {
+            this.disposablePanel.dispose();
+        }
     }
 
-    console.log(`WebviewEditor.onMessageReceived: type=${event.type}, data=${JSON.stringify(event)}`);
+    async show(): Promise<void> {
+        const html = await this.getHtml();
 
-    switch (event.type) {
-      case 'saveSettings':
-        // TODO: update settings
-        break;
-      default:
-        break;
-    }
-  }
+        const rootPath = Uri.file(this.context.asAbsolutePath("./build"))
+            .with({ scheme: "vscode-resource" })
+            .toString();
 
-  private async getHtml(): Promise<string> {
-    const doc = await Workspace
-      .openTextDocument(this.context.asAbsolutePath(path.join('build/ui', this.filename)));
-    return doc.getText();
-  }
+        // Replace placeholders in html content for assets and adding configurations as `window.bootstrap`
+        const fullHtml = html
+            .replace(/{{root}}/g, rootPath)
+            .replace("'{{bootstrap}}'", JSON.stringify(this.getBootstrap()));
 
-  // Private async postMessage(message: Message, invalidates: Invalidates = 'all'): Promise<boolean> {
-  //   if (this.panel === undefined) {
-  //     return false;
-  //   }
+        // If panel already opened just reveal
+        if (this.panel !== undefined) {
+            this.panel.webview.html = fullHtml;
+            return this.panel.reveal(ViewColumn.Active);
+        }
 
-  //   const result = await this.panel.webview.postMessage(message);
+        this.panel = window.createWebviewPanel(
+            this.id,
+            this.title,
+            ViewColumn.Active,
+            {
+                retainContextWhenHidden: true,
+                enableFindWidget: true,
+                enableCommandUris: true,
+                enableScripts: true
+            }
+        );
 
-  //   // If post was ok, update invalidateOnVisible if different than default
-  //   if (!result && this.invalidateOnVisible !== 'all') {
-  //     this.invalidateOnVisible = invalidates;
-  //   }
+        // Applying listeners
+        this.disposablePanel = Disposable.from(
+            this.panel,
+            this.panel.onDidDispose(this.onPanelDisposed, this),
+            this.panel.onDidChangeViewState(this.onViewStateChanged, this),
+            this.panel.webview.onDidReceiveMessage(this.onMessageReceived, this)
+        );
 
-  //   return result;
-  // }
-
-  // Private async postUpdatedConfiguration(): Promise<boolean> {
-  //   // Post full raw configuration
-  //   return this.postMessage({
-  //     type: 'settingsChanged',
-  //     config: getCustomSettings()
-  //   } as ISettingsChangedMessage, 'config');
-  // }
-
-  private onPanelDisposed(): void {
-    if (this.disposablePanel) {
-      this.disposablePanel.dispose();
+        this.panel.webview.html = fullHtml;
     }
 
-    this.panel = undefined;
-  }
+    protected onMessageReceived(event: Message): void {
+        if (event === null) {
+            return;
+        }
 
-  private async onViewStateChanged(event: WebviewPanelOnDidChangeViewStateEvent): Promise<boolean | void> {
-    console.log('WebviewEditor.onViewStateChanged', event.webviewPanel.visible);
+        console.log(
+            `WebviewEditor.onMessageReceived: type=${
+                event.type
+            }, data=${JSON.stringify(event)}`
+        );
 
-    if (!this.invalidateOnVisible || !event.webviewPanel.visible) {
-      return;
+        switch (event.type) {
+            case "saveSettings":
+                // TODO: update settings
+                break;
+            default:
+                break;
+        }
     }
 
-    // Update the view since it can be outdated
-    const invalidContext = this.invalidateOnVisible;
-    this.invalidateOnVisible = undefined;
-
-    switch (invalidContext) {
-      case 'config':
-        // Post the new configuration to the view
-        // return this.postUpdatedConfiguration();
-        return;
-      default:
-        return this.show();
+    private async getHtml(): Promise<string> {
+        const doc = await Workspace.openTextDocument(
+            this.context.asAbsolutePath(path.join("build/ui", this.filename))
+        );
+        return doc.getText();
     }
-  }
 
-  abstract get filename(): string;
-  abstract get id(): string;
-  abstract get title(): string;
-  abstract getBootstrap(): TBootstrap;
+    // Private async postMessage(message: Message, invalidates: Invalidates = 'all'): Promise<boolean> {
+    //   if (this.panel === undefined) {
+    //     return false;
+    //   }
+
+    //   const result = await this.panel.webview.postMessage(message);
+
+    //   // If post was ok, update invalidateOnVisible if different than default
+    //   if (!result && this.invalidateOnVisible !== 'all') {
+    //     this.invalidateOnVisible = invalidates;
+    //   }
+
+    //   return result;
+    // }
+
+    // Private async postUpdatedConfiguration(): Promise<boolean> {
+    //   // Post full raw configuration
+    //   return this.postMessage({
+    //     type: 'settingsChanged',
+    //     config: getCustomSettings()
+    //   } as ISettingsChangedMessage, 'config');
+    // }
+
+    private onPanelDisposed(): void {
+        if (this.disposablePanel) {
+            this.disposablePanel.dispose();
+        }
+
+        this.panel = undefined;
+    }
+
+    private async onViewStateChanged(
+        event: WebviewPanelOnDidChangeViewStateEvent
+    ): Promise<boolean | void> {
+        console.log(
+            "WebviewEditor.onViewStateChanged",
+            event.webviewPanel.visible
+        );
+
+        if (!this.invalidateOnVisible || !event.webviewPanel.visible) {
+            return;
+        }
+
+        // Update the view since it can be outdated
+        const invalidContext = this.invalidateOnVisible;
+        this.invalidateOnVisible = undefined;
+
+        switch (invalidContext) {
+            case "config":
+                // Post the new configuration to the view
+                // return this.postUpdatedConfiguration();
+                return;
+            default:
+                return this.show();
+        }
+    }
+
+    abstract get filename(): string;
+    abstract get id(): string;
+    abstract get title(): string;
+    abstract getBootstrap(): TBootstrap;
 }

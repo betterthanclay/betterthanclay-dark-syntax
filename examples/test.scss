@@ -22,11 +22,14 @@ fieldset.w {
     }
 }
 
-
-input, select, .w.textbox, label.w.radio, label.w.checkbox {
-    border: 2px #A9A9A9 solid;
+input,
+select,
+.w.textbox,
+label.w.radio,
+label.w.checkbox {
+    border: 2px #a9a9a9 solid;
     padding: 0.4em;
-    background: #FFF;
+    background: #fff;
 
     &:focus {
         border-color: $blue2;
@@ -34,12 +37,13 @@ input, select, .w.textbox, label.w.radio, label.w.checkbox {
         //box-shadow: 0 0 0.4rem 3px rgba($blue2, 0.4);
     }
 
-    &.error, .error & {
+    &.error,
+    .error & {
         color: $off-black;
     }
 }
 
-input[type='file'] {
+input[type="file"] {
     &:focus {
         outline: 1px $blue2 solid;
     }
@@ -49,11 +53,12 @@ input[type='file'] {
     }
 }
 
-label.w.radio, label.w.checkbox {
+label.w.radio,
+label.w.checkbox {
     padding-left: 0.6em;
     padding-right: 0.6em;
-    background: #EBEBEB;
-    border-color: #EBEBEB;
+    background: #ebebeb;
+    border-color: #ebebeb;
 
     input {
         border: none;
@@ -62,11 +67,12 @@ label.w.radio, label.w.checkbox {
     }
 
     &.checked {
-        border-color: #A9A9A9;
+        border-color: #a9a9a9;
         background: white;
     }
 
-    &:hover, &.focus {
+    &:hover,
+    &.focus {
         border-color: $blue2;
         outline: 1px $blue2 solid;
         //box-shadow: 0 0 0.4rem 2px rgba($blue2, 0.4);
@@ -74,11 +80,13 @@ label.w.radio, label.w.checkbox {
 }
 
 body.controller {
-    label.w.checkbox, label.w.radio {
+    label.w.checkbox,
+    label.w.radio {
         position: relative;
     }
 
-    input.w.checkbox, input.w.radio {
+    input.w.checkbox,
+    input.w.radio {
         //visibility: collapse;
         position: relative;
         color: white;
@@ -94,7 +102,7 @@ body.controller {
             justify-content: space-around;
             border: 1px lighten($grey-dark, 15%) solid;
             visibility: visible;
-            content: '✓';
+            content: "✓";
             font-weight: bold;
             font-size: 1em;
             color: transparent;
@@ -121,7 +129,7 @@ body.controller {
     }
 
     input.w.checkbox:indeterminate + span:before {
-        content: '–';
+        content: "–";
         color: white;
         font-weight: bold;
         background: $blue2;
@@ -149,12 +157,11 @@ body.controller {
         }
     }
 
-
     input.w.radio {
         + span:before {
             border-radius: 50%;
             font-size: 0.43em;
-            content: '';
+            content: "";
             padding: 0.6em;
             top: 1.1em;
             left: 1.2em;
@@ -175,7 +182,8 @@ body.controller {
         }
     }
 
-    .secondary input.w.radio, input.w.radio.secondary {
+    .secondary input.w.radio,
+    input.w.radio.secondary {
         &:indeterminate + span:before {
             border-color: $blue;
         }
@@ -186,7 +194,8 @@ body.controller {
     }
 
     .disabled {
-        input.w.checkbox, input.w.radio {
+        input.w.checkbox,
+        input.w.radio {
             & + span:before {
                 cursor: default !important;
                 background: $grey;
@@ -245,7 +254,8 @@ div.w.field {
             }
         }
 
-        .field-size, .field-uploaded {
+        .field-size,
+        .field-uploaded {
             color: lighten(desaturate($positive-color, 20%), 10%);
             //min-width: 8em;
             white-space: nowrap;
@@ -259,11 +269,11 @@ div.w.field {
             min-width: 4em;
             padding-right: 0;
 
-            a, button {
+            a,
+            button {
                 color: darken($positive-color, 20%) !important;
             }
         }
-
 
         &.original {
             opacity: 0.5;
@@ -271,7 +281,8 @@ div.w.field {
             color: darken($grey-darker, 10%);
             background: $grey;
 
-            .field-size, .field-uploaded {
+            .field-size,
+            .field-uploaded {
                 color: lighten($grey-dark, 5%);
             }
         }
@@ -306,7 +317,6 @@ div.w.field {
         }
     }
 
-
     &.hsForm {
         background: lighten($grey, 4%);
         padding: 1rem;
@@ -337,7 +347,8 @@ div.w.field {
         }
     }
 
-    &[data-toggled-by], &[data-untoggled-by] {
+    &[data-toggled-by],
+    &[data-untoggled-by] {
         display: none;
     }
 }
@@ -356,9 +367,6 @@ div.w.field.required > div.w.list.labels > label.w:after {
     color: #dc712a;
 }
 
-
-
-
 div.w.list.errors {
     background: $error-color;
     margin-top: 0.3em !important;
@@ -369,8 +377,9 @@ div.w.list.errors {
     }
 }
 
-
-button.w.btn.event, .btn, a.btn {
+button.w.btn.event,
+.btn,
+a.btn {
     background: lighten($grey-dark, 10%);
     border: 3px transparent solid;
     border-bottom-color: $grey-dark;
@@ -385,7 +394,8 @@ button.w.btn.event, .btn, a.btn {
         border-color: $blue2 !important;
     }
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
         background: lighten($grey-dark, 15%);
         border-bottom-color: $grey-dark;
     }
@@ -398,36 +408,43 @@ button.w.btn.event, .btn, a.btn {
         border-top-color: darken($grey-dark, 10%) !important;
     }
 
-
-    &.positive, &.secondary {
+    &.positive,
+    &.secondary {
         background: $blue2;
         border-bottom-color: desaturate(darken($blue2, 10%), 20%);
 
-        &:hover, &:focus {
-            background: #93D6F6;
+        &:hover,
+        &:focus {
+            background: #93d6f6;
         }
 
         &:hover {
-            border-bottom-color: desaturate(darken(#93D6F6, 15%), 30%);
+            border-bottom-color: desaturate(darken(#93d6f6, 15%), 30%);
         }
 
         &:active {
-            background: #4B9DC5;
-            border-top-color: darken(#4B9DC5, 10%) !important;
+            background: #4b9dc5;
+            border-top-color: darken(#4b9dc5, 10%) !important;
         }
     }
 
-
     &.negative {
         background: $negative-color !important;
-        border-bottom-color: desaturate(darken($negative-color, 10%), 20%) !important;
+        border-bottom-color: desaturate(
+            darken($negative-color, 10%),
+            20%
+        ) !important;
 
-        &:hover, &:focus {
+        &:hover,
+        &:focus {
             background: lighten($negative-color, 10%) !important;
         }
 
         &:hover {
-            border-bottom-color: desaturate(darken($negative-color, 15%), 30%) !important;
+            border-bottom-color: desaturate(
+                darken($negative-color, 15%),
+                30%
+            ) !important;
         }
 
         &:active {
@@ -436,8 +453,9 @@ button.w.btn.event, .btn, a.btn {
         }
     }
 
-
-    &.reset, &.cancel, &.text {
+    &.reset,
+    &.cancel,
+    &.text {
         background: none;
         color: $off-black !important;
         box-shadow: none;
@@ -446,19 +464,21 @@ button.w.btn.event, .btn, a.btn {
         border: none;
         border-radius: 0;
 
-        &:hover, &:focus {
-            color: #07509F !important;
+        &:hover,
+        &:focus {
+            color: #07509f !important;
         }
 
         &:active {
-            color: darken(#07509F, 10%) !important;
+            color: darken(#07509f, 10%) !important;
         }
     }
 
     &.cancel {
         color: $negative-color !important;
 
-        &:hover, &:focus {
+        &:hover,
+        &:focus {
             color: lighten($negative-color, 8%) !important;
         }
 
@@ -468,20 +488,20 @@ button.w.btn.event, .btn, a.btn {
     }
 }
 
-
 div.w.button-area > button.w.btn.event:first-child,
 div.w.button-area > :first-child button.w.btn.event,
 button.w.btn.event.primary,
 .btn.primary {
-    background: #074F9F;
-    border-bottom-color: desaturate(darken(#074F9F, 10%), 20%);
+    background: #074f9f;
+    border-bottom-color: desaturate(darken(#074f9f, 10%), 20%);
 
-    &:hover, &:focus {
-        background: #2673C6;
+    &:hover,
+    &:focus {
+        background: #2673c6;
     }
 
     &:hover {
-        border-bottom-color: desaturate(darken(#2673C6, 15%), 30%);
+        border-bottom-color: desaturate(darken(#2673c6, 15%), 30%);
     }
 
     &:active {
@@ -490,16 +510,11 @@ button.w.btn.event.primary,
     }
 }
 
-
 p.asterisk:after {
-    content: '*';
+    content: "*";
     color: #dc712a;
     margin-left: 0.5em;
 }
-
-
-
-
 
 form.login {
     p.register {
